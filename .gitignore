@@ -1,0 +1,3 @@
+#IDE Specifics
+/.idea
+/docker-php-test.iml
