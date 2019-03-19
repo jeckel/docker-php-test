@@ -1,17 +1,34 @@
 # .circleci/config.yml
 version: 2
+# Declare reusable alias
 
+build: &build
+  steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: build image
+        command: docker build -f ${DOCKERFILE} -t php-test:${IMAGE_TAG} .
+
+# Configure Jobs:
 jobs:
   php-7.3-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: build image
-          command: docker build -f php-7.3-cli-alpine/Dockerfile -t php-test:7.3-cli-alpine .
+    environment:
+      - IMAGE_TAG: 7.3-cli-alpine
+      - DOCKERFILE: php-7.3-cli-alpine/Dockerfile
+    <<: *build
+
+  php-7.3-fpm-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    environment:
+      - IMAGE_TAG: 7.3-fpm-alpine
+      - DOCKERFILE: php-7.3-fpm-alpine/Dockerfile
+    <<: *build
 
 # Define the workflow
 workflows:
@@ -20,3 +37,4 @@ workflows:
   build:
     jobs:
       - php-7.3-cli-alpine
+      - php-7.3-fpm-alpine

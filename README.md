@@ -1,4 +1,6 @@
-# docker-php-test
+[![Twitter](https://img.shields.io/badge/Twitter-%40jeckel4-blue.svg)](https://twitter.com/jeckel4) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Julien%20Mercier-blue.svg)](https://www.linkedin.com/in/jeckel/) [![CircleCI](https://circleci.com/gh/jeckel/docker-php-test.svg?style=svg)](https://circleci.com/gh/jeckel/docker-php-test)
+
+# Docker PHP test images
 Collection of docker PHP image dedicated for tests and CI
 
 This images contains :
@@ -10,3 +12,4 @@ This images contains :
 
 # Versions
 - php-7.3-cli-alpine
+- php-7.3-fpm-alpine
