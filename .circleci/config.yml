@@ -1,0 +1,14 @@
+# .circleci/config.yml
+version: 2
+
+jobs:
+  php-7.3-cli-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: build image
+          command: docker build -f php-7.3-cli-alpine/Dockerfile -t php-test:7.3-cli-alpine .
