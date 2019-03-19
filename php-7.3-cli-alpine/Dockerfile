@@ -9,5 +9,7 @@ RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && chmod +x 
 RUN apk --no-cache add git shadow sudo
 
 # Add shell scripts
-COPY common/*.sh /usr/local/bin/
+COPY common/cli-entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY common/wait-for.sh /usr/local/bin/wait-for.sh
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
