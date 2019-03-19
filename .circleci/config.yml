@@ -12,3 +12,11 @@ jobs:
       - run:
           name: build image
           command: docker build -f php-7.3-cli-alpine/Dockerfile -t php-test:7.3-cli-alpine .
+
+# Define the workflow
+workflows:
+  version: 2
+  # Always build images
+  build:
+    jobs:
+      - php-7.3-cli-alpine
