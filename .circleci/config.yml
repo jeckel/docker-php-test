@@ -13,6 +13,7 @@ build: &build
         name: test composer
         command: |
           whoami
+          cat /etc/passwd
           cd tests
           ./test-composer.sh
 
