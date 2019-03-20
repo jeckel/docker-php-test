@@ -9,11 +9,6 @@ build: &build
     - run:
         name: build image
         command: docker build -f ${DOCKERFILE} -t php-test:${IMAGE_TAG} .
-    - run:
-        name: test composer
-        command: |
-          cd tests
-          ./test-composer.sh
 
 # Configure Jobs:
 jobs:

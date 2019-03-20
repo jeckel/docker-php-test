@@ -1,7 +1,0 @@
-{
-    "name": "www-data/project",
-    "type": "project",
-    "require": {
-        "phpunit/phpunit": "^8.0"
-    }
-}
