@@ -23,7 +23,7 @@ if [ `whoami` = root ]; then
     fi
     apk --no-cache add sudo
     chmod +x test-composer.sh
-    sudo -u 1000:1000 -E sh "./test-composer.sh ${IMAGE_TAG}"
+    sudo -u \#1000:\#1000 -E sh "./test-composer.sh ${IMAGE_TAG}"
     exit $?
 fi
 
