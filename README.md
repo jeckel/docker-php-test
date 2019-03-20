@@ -4,6 +4,8 @@
 
 - `7.3-cli-alpine` ([php-7.3-cli-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-alpine/Dockerfile))
 - `7.3-fpm-alpine` ([php-7.3-fpm-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-fpm-alpine/Dockerfile))
+- `7.2-cli-alpine` ([php-7.2-cli-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-alpine/Dockerfile))
+- `7.2-fpm-alpine` ([php-7.2-fpm-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-fpm-alpine/Dockerfile))
 
 # Docker PHP test images
 Collection of docker PHP image dedicated for tests and CI
