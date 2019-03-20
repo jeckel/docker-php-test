@@ -1,3 +1,6 @@
 #IDE Specifics
 /.idea
 /docker-php-test.iml
+
+# Tests outpus
+/tests/vendor
