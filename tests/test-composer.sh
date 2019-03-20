@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 if [ ! -z $1 ]; then
     IMAGE_TAG=$1
