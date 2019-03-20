@@ -21,6 +21,7 @@ if [ `whoami` = root ]; then
         mkdir -p /home/bob && \
         chown -R bob:bob .
     fi
+    chmod +x test-composer.sh
     sudo -u 1000:1000 -E sh "./test-composer.sh ${IMAGE_TAG}"
     exit $?
 fi
