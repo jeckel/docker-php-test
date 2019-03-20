@@ -10,7 +10,7 @@ set -- `ls -nd .` && LOCAL_UID=$3 && LOCAL_GID=$4
 usermod -u ${LOCAL_UID} www-data
 groupmod -g ${LOCAL_GID} www-data
 
-if [ "${CMD_ARGS}" == "php-fpm" ]; then
+if [ "${CMD}" == "php-fpm" ]; then
     exec ${CMD_ARGS}
 else
     sudo -g \#${LOCAL_GID} -u \#${LOCAL_UID} -E sh -c "${CMD_ARGS}"
