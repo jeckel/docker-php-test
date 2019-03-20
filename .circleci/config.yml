@@ -56,3 +56,5 @@ workflows:
     jobs:
       - php-7.3-cli-alpine
       - php-7.3-fpm-alpine
+      - php-7.2-cli-alpine
+      - php-7.2-fpm-alpine
