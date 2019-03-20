@@ -30,6 +30,24 @@ jobs:
       - DOCKERFILE: php-7.3-fpm-alpine/Dockerfile
     <<: *build
 
+  php-7.2-cli-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    environment:
+      - IMAGE_TAG: 7.2-cli-alpine
+      - DOCKERFILE: php-7.2-cli-alpine/Dockerfile
+    <<: *build
+
+  php-7.2-fpm-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    environment:
+      - IMAGE_TAG: 7.2-fpm-alpine
+      - DOCKERFILE: php-7.2-fpm-alpine/Dockerfile
+    <<: *build
+
 # Define the workflow
 workflows:
   version: 2
@@ -38,3 +56,5 @@ workflows:
     jobs:
       - php-7.3-cli-alpine
       - php-7.3-fpm-alpine
+      - php-7.2-cli-alpine
+      - php-7.2-fpm-alpine
