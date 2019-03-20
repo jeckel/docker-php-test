@@ -13,11 +13,11 @@ if [ `whoami` = root ]; then
     echo "Running as root, change to another user"
 
     if ! egrep -i "1000" /etc/group ; then
-        groupadd -f -g 1000 bob
+        addgroup -g 1000 bob
     fi
 
     if ! id 1000 >/dev/null 2>/dev/null ; then
-        useradd -u 1000 -g bob bob && \
+        adduser -D -u 1000 -G bob bob && \
         mkdir -p /home/bob && \
         chown -R bob:bob .
     fi
