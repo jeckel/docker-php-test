@@ -17,3 +17,6 @@ All this images contains this features:
 - the `composer` dependency manager installed globally
 - a `wait-for.sh` script (from [eficode/wait-for](https://github.com/eficode/wait-for)) to be able to wait for other services
 
+# Issues
+
+If you encounter some issues or want to request additional images / version, you can add new [issues on github](https://github.com/jeckel/docker-php-test/issues).
