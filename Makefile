@@ -1,21 +1,19 @@
-.PHONY: build-php73-cli-alpine build-php73-fpm-alpine build-php72-cli-alpine build-php72-fpm-alpine build-php71-cli-alpine build-php71-fpm-alpine
+.PHONY: run composer-version codeception-version
 
-default: build-php73-cli-alpine build-php73-fpm-alpine build-php72-cli-alpine build-php72-fpm-alpine build-php71-cli-alpine build-php71-fpm-alpine
+DOCKERFILES=$(patsubst ./%/Dockerfile, %, $(shell find . -name 'Dockerfile' | sort))
+COMMONFILES=$(shell find ./common -name '*.sh')
 
-build-php73-cli-alpine:
-	@docker build -f php-7.3-cli-alpine/Dockerfile -t php-test:7.3-cli-alpine .
+default: $(DOCKERFILES)
 
-build-php73-fpm-alpine:
-	@docker build -f php-7.3-fpm-alpine/Dockerfile -t php-test:7.3-fpm-alpine .
+php-%: php-%/Dockerfile $(COMMONFILES)
+	@docker build -f $< -t php-test:$@ .
 
-build-php72-cli-alpine:
-	@docker build -f php-7.2-cli-alpine/Dockerfile -t php-test:7.2-cli-alpine .
+run:
+	@docker run --rm -it -v $(shell pwd):/app -w /app php-test:${TAG} ${CMD}
 
-build-php72-fpm-alpine:
-	@docker build -f php-7.2-fpm-alpine/Dockerfile -t php-test:7.2-fpm-alpine .
+composer-version:
+	@docker run --rm -v $(shell pwd):/app -w /app php-test:${TAG} composer -V
 
-build-php71-cli-alpine:
-	@docker build -f php-7.1-cli-alpine/Dockerfile -t php-test:7.1-cli-alpine .
+codeception-version:
+	@docker run --rm -v $(shell pwd):/app -w /app php-test:${TAG} codecept -V
 
-build-php71-fpm-alpine:
-	@docker build -f php-7.1-fpm-alpine/Dockerfile -t php-test:7.1-fpm-alpine .
