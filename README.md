@@ -2,12 +2,19 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- `7.3-cli-alpine` ([php-7.3-cli-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-alpine/Dockerfile))
-- `7.3-fpm-alpine` ([php-7.3-fpm-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-fpm-alpine/Dockerfile))
-- `7.2-cli-alpine` ([php-7.2-cli-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-alpine/Dockerfile))
-- `7.2-fpm-alpine` ([php-7.2-fpm-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-fpm-alpine/Dockerfile))
-- `7.1-cli-alpine` ([php-7.1-cli-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-cli-alpine/Dockerfile))
-- `7.1-fpm-alpine` ([php-7.1-fpm-alpine/Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-fpm-alpine/Dockerfile))
+## Light images
+- `7.3-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-alpine/Dockerfile))
+- `7.3-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-fpm-alpine/Dockerfile))
+- `7.2-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-alpine/Dockerfile))
+- `7.2-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-fpm-alpine/Dockerfile))
+- `7.1-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-cli-alpine/Dockerfile))
+- `7.1-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-fpm-alpine/Dockerfile))
+
+## Codeception images
+
+**Warning:** *[Codeception](https://codeception.com/) images are still experimental and haven't been fully tested yet*
+
+- `7.3-cli-alpine-codeception` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-alpine-codeception/Dockerfile))
 
 # Docker PHP test images
 Collection of docker PHP image dedicated for tests and CI

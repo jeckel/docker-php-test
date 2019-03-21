@@ -66,6 +66,15 @@ jobs:
       - DOCKERFILE: php-7.1-fpm-alpine/Dockerfile
     <<: *build
 
+  php-7.3-cli-alpine-codeception:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    environment:
+      - IMAGE_TAG: 7.3-cli-alpine-codeception
+      - DOCKERFILE: php-7.3-cli-alpine-codeception/Dockerfile
+    <<: *build
+
 # Define the workflow
 workflows:
   version: 2
@@ -78,3 +87,7 @@ workflows:
       - php-7.2-fpm-alpine
       - php-7.1-cli-alpine
       - php-7.1-fpm-alpine
+      - php-7.3-cli-alpine-codeception:
+          requires:
+            - php-7.3-cli-alpine
+
