@@ -12,6 +12,9 @@ RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
     mkdir -p ${A_COMPOSER_HOME} && \
     chown -R www-data:www-data ${A_COMPOSER_HOME}
 
+RUN wget https://codeception.com/codecept.phar -O /usr/bin/codecept && \
+    chmod +x /usr/bin/codecept
+
 RUN apk --no-cache add git shadow sudo
 
 # Add shell scripts
