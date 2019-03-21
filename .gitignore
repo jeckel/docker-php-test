@@ -4,3 +4,4 @@
 
 # Tests outpus
 /tests/vendor
+/tests/codecept
