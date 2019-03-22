@@ -1,4 +1,4 @@
-FROM php:7.2-cli-stretch
+FROM php:7.1-cli-stretch
 ARG A_COMPOSER_HOME=/var/composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
 
