@@ -13,6 +13,8 @@
 ## Debian based images
 
 - `7.3-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-stretch/Dockerfile))
+- `7.2-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-stretch/Dockerfile))
+- `7.1-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-cli-stretch/Dockerfile))
 
 
 ## Codeception images
