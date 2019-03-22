@@ -10,6 +10,8 @@ set -- `ls -nd .` && LOCAL_UID=$3 && LOCAL_GID=$4
 usermod -u ${LOCAL_UID} www-data
 groupmod -g ${LOCAL_GID} www-data
 
+mkdir -p ${COMPOSER_HOME} && chown -R www-data:www-data ${COMPOSER_HOME}
+
 if [ "${CMD}" == "php-fpm" ]; then
     exec ${CMD_ARGS}
 else
