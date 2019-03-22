@@ -21,6 +21,15 @@ jobs:
       - DOCKERFILE: php-7.3-cli-alpine/Dockerfile
     <<: *build
 
+  php-7.3-cli-stretch:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    environment:
+      - IMAGE_TAG: 7.3-cli-stretch
+      - DOCKERFILE: php-7.3-cli-stretch/Dockerfile
+    <<: *build
+
   php-7.3-fpm-alpine:
     working_directory: /app
     docker:
@@ -82,6 +91,7 @@ workflows:
   build:
     jobs:
       - php-7.3-cli-alpine
+      - php-7.3-cli-stretch
       - php-7.3-fpm-alpine
       - php-7.2-cli-alpine
       - php-7.2-fpm-alpine
