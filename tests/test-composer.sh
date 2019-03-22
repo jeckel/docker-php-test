@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
-
 set -e
 
 TAG=$1
@@ -10,7 +8,7 @@ if [ -z ${TAG} ]; then
     exit 1
 fi
 
-if [ -d somposer ]; then
+if [ -d composer ]; then
     rm -Rf composer
 fi
 
