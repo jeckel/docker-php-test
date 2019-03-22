@@ -8,9 +8,7 @@ RUN apk --update --no-cache add autoconf g++ make && \
     apk del --purge autoconf g++ make
 
 RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
-    chmod +x /usr/bin/composer && \
-    mkdir -p ${A_COMPOSER_HOME} && \
-    chown -R www-data:www-data ${A_COMPOSER_HOME}
+    chmod +x /usr/bin/composer
 
 RUN wget https://codeception.com/codecept.phar -O /usr/bin/codecept && \
     chmod +x /usr/bin/codecept

@@ -1,16 +1,13 @@
-FROM php:7.2-cli-alpine
-ARG A_COMPOSER_HOME=/home/www-data/.composer
+FROM php:7.3-cli-stretch
+ARG A_COMPOSER_HOME=/var/composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
 
-RUN apk --update --no-cache add autoconf g++ make && \
-    pecl install -f xdebug && \
-    docker-php-ext-enable xdebug && \
-    apk del --purge autoconf g++ make
+RUN apt-get update && apt-get install -y git sudo wget zip
+RUN pecl install -f xdebug && \
+    docker-php-ext-enable xdebug
 
 RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
     chmod +x /usr/bin/composer
-
-RUN apk --no-cache add git shadow sudo
 
 # Add shell scripts
 COPY common/cli-entrypoint.sh /usr/local/bin/entrypoint.sh

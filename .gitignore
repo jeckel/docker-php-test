@@ -2,6 +2,6 @@
 /.idea
 /docker-php-test.iml
 
-# Tests outpus
-/tests/vendor
+# Tests outputs
+/tests/composer
 /tests/codecept

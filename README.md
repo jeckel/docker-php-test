@@ -2,13 +2,20 @@
 
 # Supported tags and respective `Dockerfile` links
 
-## Light images
+## Alpine based images
 - `7.3-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-alpine/Dockerfile))
 - `7.3-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-fpm-alpine/Dockerfile))
 - `7.2-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-alpine/Dockerfile))
 - `7.2-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-fpm-alpine/Dockerfile))
 - `7.1-cli-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-cli-alpine/Dockerfile))
 - `7.1-fpm-alpine` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-fpm-alpine/Dockerfile))
+
+## Debian based images
+
+- `7.3-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.3-cli-stretch/Dockerfile))
+- `7.2-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.2-cli-stretch/Dockerfile))
+- `7.1-cli-stretch` ([Dockerfile](https://github.com/jeckel/docker-php-test/blob/master/php-7.1-cli-stretch/Dockerfile))
+
 
 ## Codeception images
 
