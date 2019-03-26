@@ -1,4 +1,6 @@
 FROM php:7.3-cli-alpine
+LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
+
 ARG A_COMPOSER_HOME=/home/www-data/.composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
 
