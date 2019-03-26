@@ -1,4 +1,6 @@
 FROM php:7.2-cli-stretch
+LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
+
 ARG A_COMPOSER_HOME=/var/composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
 
