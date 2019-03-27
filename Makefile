@@ -17,3 +17,5 @@ composer-version:
 codeception-version:
 	@docker run --rm -v $(shell pwd):/app -w /app php-test:${TAG} codecept -V
 
+check-config:
+	@circleci config process .circleci/config.yml
