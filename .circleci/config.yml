@@ -1,7 +1,20 @@
 # .circleci/config.yml
-version: 2
-# Declare reusable alias
+version: 2.1
 
+# Define reusable command
+commands:
+  build_image:
+    description: Build docker image
+    parameters:
+      dockerfile:
+        type: string
+      image_tag:
+        type: string
+    steps:
+      name: Build image << parameters.image_tag >>
+      command: docker build -f << parameters.dockerfile >> -t php-test:<< parameters.image_tag >> .
+
+# Declare reusable alias
 build: &build
   steps:
     - checkout
@@ -16,10 +29,14 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.3-cli-alpine
-      - DOCKERFILE: php-7.3-cli-alpine/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          dockerfile: php-7.3-cli-alpine/Dockerfile
+          image_tag: 7.3-cli-alpine
+#    environment:
+#      - IMAGE_TAG: 7.3-cli-alpine
+#      - DOCKERFILE: php-7.3-cli-alpine/Dockerfile
+#    <<: *build
 
   php-7.3-cli-stretch:
     working_directory: /app
