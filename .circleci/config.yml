@@ -11,8 +11,9 @@ commands:
       image_tag:
         type: string
     steps:
-      name: Build image << parameters.image_tag >>
-      command: docker build -f << parameters.dockerfile >> -t php-test:<< parameters.image_tag >> .
+      - run:
+          name: Build image << parameters.image_tag >>
+          command: docker build -f << parameters.dockerfile >> -t php-test:<< parameters.image_tag >> .
 
 # Declare reusable alias
 build: &build
@@ -25,7 +26,7 @@ build: &build
 
 # Configure Jobs:
 jobs:
-  php-7.3-cli-alpine:
+  php-7-3-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -38,7 +39,7 @@ jobs:
 #      - DOCKERFILE: php-7.3-cli-alpine/Dockerfile
 #    <<: *build
 
-  php-7.3-cli-stretch:
+  php-7-3-cli-stretch:
     working_directory: /app
     docker:
       - image: docker:git
@@ -47,7 +48,7 @@ jobs:
       - DOCKERFILE: php-7.3-cli-stretch/Dockerfile
     <<: *build
 
-  php-7.3-fpm-alpine:
+  php-7-3-fpm-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -56,7 +57,7 @@ jobs:
       - DOCKERFILE: php-7.3-fpm-alpine/Dockerfile
     <<: *build
 
-  php-7.2-cli-alpine:
+  php-7-2-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -65,7 +66,7 @@ jobs:
       - DOCKERFILE: php-7.2-cli-alpine/Dockerfile
     <<: *build
 
-  php-7.2-cli-stretch:
+  php-7-2-cli-stretch:
     working_directory: /app
     docker:
       - image: docker:git
@@ -74,7 +75,7 @@ jobs:
       - DOCKERFILE: php-7.2-cli-stretch/Dockerfile
     <<: *build
 
-  php-7.2-fpm-alpine:
+  php-7-2-fpm-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -83,7 +84,7 @@ jobs:
       - DOCKERFILE: php-7.2-fpm-alpine/Dockerfile
     <<: *build
 
-  php-7.1-cli-alpine:
+  php-7-1-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -92,7 +93,7 @@ jobs:
       - DOCKERFILE: php-7.1-cli-alpine/Dockerfile
     <<: *build
 
-  php-7.1-cli-stretch:
+  php-7-1-cli-stretch:
     working_directory: /app
     docker:
       - image: docker:git
@@ -101,7 +102,7 @@ jobs:
       - DOCKERFILE: php-7.1-cli-stretch/Dockerfile
     <<: *build
 
-  php-7.1-fpm-alpine:
+  php-7-1-fpm-alpine:
     working_directory: /app
     docker:
       - image: docker:git
@@ -110,7 +111,7 @@ jobs:
       - DOCKERFILE: php-7.1-fpm-alpine/Dockerfile
     <<: *build
 
-  php-7.3-cli-alpine-codeception:
+  php-7-3-cli-alpine-codeception:
     working_directory: /app
     docker:
       - image: docker:git
@@ -125,16 +126,16 @@ workflows:
   # Always build images
   build:
     jobs:
-      - php-7.3-cli-alpine
-      - php-7.3-cli-stretch
-      - php-7.3-fpm-alpine
-      - php-7.2-cli-alpine
-      - php-7.2-cli-stretch
-      - php-7.2-fpm-alpine
-      - php-7.1-cli-alpine
-      - php-7.1-cli-stretch
-      - php-7.1-fpm-alpine
-      - php-7.3-cli-alpine-codeception:
+      - php-7-3-cli-alpine
+      - php-7-3-cli-stretch
+      - php-7-3-fpm-alpine
+      - php-7-2-cli-alpine
+      - php-7-2-cli-stretch
+      - php-7-2-fpm-alpine
+      - php-7-1-cli-alpine
+      - php-7-1-cli-stretch
+      - php-7-1-fpm-alpine
+      - php-7-3-cli-alpine-codeception:
           requires:
-            - php-7.3-cli-alpine
+            - php-7-3-cli-alpine
 
