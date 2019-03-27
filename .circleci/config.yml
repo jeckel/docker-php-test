@@ -15,15 +15,6 @@ commands:
           name: Build image << parameters.image_tag >>
           command: docker build -f php-<< parameters.image_tag >>/Dockerfile -t php-test:<< parameters.image_tag >> .
 
-# Declare reusable alias
-build: &build
-  steps:
-    - checkout
-    - setup_remote_docker
-    - run:
-        name: build image
-        command: docker build -f ${DOCKERFILE} -t php-test:${IMAGE_TAG} .
-
 # Configure Jobs:
 jobs:
   php-7-3-cli-alpine:
@@ -33,7 +24,6 @@ jobs:
     steps:
       - build_image:
           image_tag: 7.3-cli-alpine
-  #          dockerfile: php-7.3-cli-alpine/Dockerfile
 
   php-7-3-cli-stretch:
     working_directory: /app
@@ -42,7 +32,6 @@ jobs:
     steps:
       - build_image:
           image_tag: 7.3-cli-stretch
-  #          dockerfile: php-7.3-cli-stretch/Dockerfile
 
   php-7-3-fpm-alpine:
     working_directory: /app
@@ -51,70 +40,62 @@ jobs:
     steps:
       - build_image:
           image_tag: 7.3-fpm-alpine
-  #          dockerfile: php-7.3-fpm-alpine/Dockerfile
 
   php-7-2-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.2-cli-alpine
-      - DOCKERFILE: php-7.2-cli-alpine/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.2-cli-alpine
 
   php-7-2-cli-stretch:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.2-cli-stretch
-      - DOCKERFILE: php-7.2-cli-stretch/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.2-cli-stretch
 
   php-7-2-fpm-alpine:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.2-fpm-alpine
-      - DOCKERFILE: php-7.2-fpm-alpine/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.2-fpm-alpine
 
   php-7-1-cli-alpine:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.1-cli-alpine
-      - DOCKERFILE: php-7.1-cli-alpine/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.1-cli-alpine
 
   php-7-1-cli-stretch:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.1-cli-stretch
-      - DOCKERFILE: php-7.1-cli-stretch/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.1-cli-stretch
 
   php-7-1-fpm-alpine:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.1-fpm-alpine
-      - DOCKERFILE: php-7.1-fpm-alpine/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.1-fpm-alpine
 
   php-7-3-cli-alpine-codeception:
     working_directory: /app
     docker:
       - image: docker:git
-    environment:
-      - IMAGE_TAG: 7.3-cli-alpine-codeception
-      - DOCKERFILE: php-7.3-cli-alpine-codeception/Dockerfile
-    <<: *build
+    steps:
+      - build_image:
+          image_tag: 7.3-cli-alpine-codeception
 
   builds_completed:
     docker:
