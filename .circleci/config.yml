@@ -13,7 +13,7 @@ commands:
       - setup_remote_docker
       - run:
           name: Build image << parameters.image_tag >>
-          command: docker build -f php-<< parameters.image_tag >> -t php-test:<< parameters.image_tag >> .
+          command: docker build -f php-<< parameters.image_tag >>/Dockerfile -t php-test:<< parameters.image_tag >> .
 
 # Declare reusable alias
 build: &build
