@@ -16,7 +16,7 @@ RUN apk --no-cache add git shadow sudo
 
 # Add shell scripts
 COPY common/fpm-entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY common/wait-for.sh /usr/local/bin/wait-for.sh
+COPY common/wait-for-it-alpine.sh /usr/local/bin/wait-for-it.sh
 
 VOLUME ${A_COMPOSER_HOME}
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
