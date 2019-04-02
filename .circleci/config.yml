@@ -121,7 +121,6 @@ workflows:
       - php-7-3-cli-alpine-codeception:
           requires:
             - php-7-3-cli-alpine
-              - php-7-2-cli-alpine
       - builds_completed:
           requires:
             - php-7-3-cli-alpine
