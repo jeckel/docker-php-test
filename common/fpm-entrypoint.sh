@@ -12,6 +12,8 @@ set -- `ls -nd .` && WORKDIR_UID=$3 && WORKDIR_GID=$4
 LOCAL_UID=${LOCAL_UID:-${WORKDIR_UID}}
 LOCAL_GID=${LOCAL_GID:-${WORKDIR_GID}}
 
+printf "==> \033[0;33mLOCAL_UID: \033[0;32m\033[1m${LOCAL_UID}\033[0m | \033[0;33mLOCAL_GID: \033[0;32m\033[1m${LOCAL_GID}\033[0m\n"
+
 usermod -u ${LOCAL_UID} www-data
 groupmod -g ${LOCAL_GID} www-data
 
