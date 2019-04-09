@@ -14,7 +14,15 @@ LOCAL_GID=${LOCAL_GID:-${WORKDIR_GID}}
 
 printf "==> \033[0;33mLOCAL_UID: \033[0;32m\033[1m${LOCAL_UID}\033[0m | \033[0;33mLOCAL_GID: \033[0;32m\033[1m${LOCAL_GID}\033[0m\n"
 
-usermod -u ${LOCAL_UID} www-data
+# Fix www-data user to have same UID than the mounted folder
+if ! $(getent passwd ${LOCAL_UID}); then
+    usermod -u ${LOCAL_UID} www-data
+fi
+
+# Try to fix www-data group to have same GID then the mounted folder (if not already in use)
+if [[ $(cat /etc/group | grep ":${LOCAL_GID}:" | wc -l) = 1 ]]; then
+    LOCAL_GID=${LOCAL_UID}
+fi
 groupmod -g ${LOCAL_GID} www-data
 
 mkdir -p ${COMPOSER_HOME} && chown -R www-data:www-data ${COMPOSER_HOME}

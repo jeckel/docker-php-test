@@ -28,8 +28,13 @@ else
     # Fix www-data user to have same UID than the mounted folder
     if ! $(getent passwd ${LOCAL_UID}); then
         usermod -u ${LOCAL_UID} www-data
-        groupmod -g ${LOCAL_GID} www-data
     fi
+
+    # Try to fix www-data group to have same GID then the mounted folder (if not already in use)
+    if [[ $(cat /etc/group | grep ":${LOCAL_GID}:" | wc -l) = 1 ]]; then
+        LOCAL_GID=${LOCAL_UID}
+    fi
+    groupmod -g ${LOCAL_GID} www-data
 
     if [[ ! -z ${COMPOSER_HOME} ]]; then
         mkdir -p ${COMPOSER_HOME} && chown -R www-data:www-data ${COMPOSER_HOME}
