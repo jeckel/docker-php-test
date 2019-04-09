@@ -9,7 +9,13 @@ CURRENT_UID=$(id -u)
 CURRENT_GID=$(id -g)
 
 # Get working directory owner
-set -- `ls -nd .` && LOCAL_UID=$3 && LOCAL_GID=$4
+set -- `ls -nd .` && WORKDIR_UID=$3 && WORKDIR_GID=$4
+
+# If not defined in env var, set with workdir UID
+LOCAL_UID=${LOCAL_UID:-${WORKDIR_UID}}
+LOCAL_GID=${LOCAL_GID:-${WORKDIR_GID}}
+
+printf "==> \033[0;33mLOCAL_UID: \033[0;32m\033[1m${LOCAL_UID}\033[0m | \033[0;33mLOCAL_GID: \033[0;32m\033[1m${LOCAL_GID}\033[0m\n"
 
 # Current user UID same as mounted folder owner
 if [[ ${LOCAL_UID} = ${CURRENT_UID} ]]; then

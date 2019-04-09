@@ -5,8 +5,13 @@ CMD_ARGS=$@
 CMD=$1
 set -e
 
-# Fix www-data user to have same UID than the mounted folder
-set -- `ls -nd .` && LOCAL_UID=$3 && LOCAL_GID=$4
+# Get working directory owner
+set -- `ls -nd .` && WORKDIR_UID=$3 && WORKDIR_GID=$4
+
+# If not defined in env var, set with workdir UID
+LOCAL_UID=${LOCAL_UID:-${WORKDIR_UID}}
+LOCAL_GID=${LOCAL_GID:-${WORKDIR_GID}}
+
 usermod -u ${LOCAL_UID} www-data
 groupmod -g ${LOCAL_GID} www-data
 
