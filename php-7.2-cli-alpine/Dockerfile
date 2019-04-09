@@ -6,9 +6,10 @@ ENV COMPOSER_HOME=$A_COMPOSER_HOME
 ENV LOCAL_UID=''
 ENV LOCAL_GID=''
 
-RUN apk --update --no-cache add autoconf g++ make && \
+RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     pecl install -f xdebug && \
     docker-php-ext-enable xdebug && \
+    docker-php-ext-install -j$(nproc) zip && \
     apk del --purge autoconf g++ make
 
 RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \

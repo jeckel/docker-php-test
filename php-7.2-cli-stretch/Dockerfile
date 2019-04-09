@@ -6,9 +6,10 @@ ENV COMPOSER_HOME=$A_COMPOSER_HOME
 ENV LOCAL_UID=''
 ENV LOCAL_GID=''
 
-RUN apt-get update && apt-get install -y git sudo wget zip
+RUN apt-get update && apt-get install -y git sudo wget zip libzip-dev
 RUN pecl install -f xdebug && \
-    docker-php-ext-enable xdebug
+    docker-php-ext-enable xdebug && \
+    docker-php-ext-install -j$(nproc) zip
 
 RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
     chmod +x /usr/bin/composer
