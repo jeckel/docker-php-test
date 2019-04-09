@@ -3,6 +3,8 @@ LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
 
 ARG A_COMPOSER_HOME=/var/composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
+ENV LOCAL_UID=''
+ENV LOCAL_GID=''
 
 RUN apt-get update && apt-get install -y git sudo wget zip
 RUN pecl install -f xdebug && \

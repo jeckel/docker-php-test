@@ -3,6 +3,8 @@ LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
 
 ARG A_COMPOSER_HOME=/home/www-data/.composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
+ENV LOCAL_UID=''
+ENV LOCAL_GID=''
 
 RUN apk --update --no-cache add autoconf g++ make && \
     pecl install -f xdebug && \
