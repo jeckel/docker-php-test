@@ -2,9 +2,12 @@ FROM php:7.2-cli-alpine
 LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
 
 ARG A_COMPOSER_HOME=/home/www-data/.composer
-ENV COMPOSER_HOME=$A_COMPOSER_HOME
-ENV LOCAL_UID=''
-ENV LOCAL_GID=''
+
+ENV COMPOSER_HOME=$A_COMPOSER_HOME \
+    COMPOSER_ALLOW_SUPERUSER=1 \
+    LOCAL_UID='' \
+    LOCAL_GID='' \
+    ENTRYPOINT_DEBUG=false
 
 RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     pecl install -f xdebug && \
@@ -12,8 +15,11 @@ RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     docker-php-ext-install -j$(nproc) zip && \
     apk del --purge autoconf g++ make
 
-RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
-    chmod +x /usr/bin/composer
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN mkdir ${A_COMPOSER_HOME} && \
+    chown -R www-data:www-data ${A_COMPOSER_HOME} && \
+    chmod -R 777 ${A_COMPOSER_HOME}
 
 RUN apk --no-cache add git shadow sudo
 
