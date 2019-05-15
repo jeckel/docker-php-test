@@ -5,6 +5,7 @@ ARG A_COMPOSER_HOME=/home/www-data/.composer
 ENV COMPOSER_HOME=$A_COMPOSER_HOME
 ENV LOCAL_UID=''
 ENV LOCAL_GID=''
+ENV ENTRYPOINT_DEBUG=false
 
 RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     pecl install -f xdebug && \
@@ -12,10 +13,11 @@ RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     docker-php-ext-install -j$(nproc) zip && \
     apk del --purge autoconf g++ make
 
-RUN wget https://getcomposer.org/composer.phar -O /usr/bin/composer && \
-    chmod +x /usr/bin/composer && \
-    mkdir -p ${A_COMPOSER_HOME} && \
-    chown -R www-data:www-data ${A_COMPOSER_HOME}
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN mkdir ${A_COMPOSER_HOME} && \
+    chown -R www-data:www-data ${A_COMPOSER_HOME} && \
+    chmod -R 777 ${A_COMPOSER_HOME}
 
 RUN apk --no-cache add git shadow sudo
 
