@@ -2,10 +2,12 @@ FROM php:7.3-fpm-alpine
 LABEL maintainer="Julien MERCIER-ROJAS <julien@jeckel-lab.fr>"
 
 ARG A_COMPOSER_HOME=/home/www-data/.composer
-ENV COMPOSER_HOME=$A_COMPOSER_HOME
-ENV LOCAL_UID=''
-ENV LOCAL_GID=''
-ENV ENTRYPOINT_DEBUG=false
+
+ENV COMPOSER_HOME=$A_COMPOSER_HOME \
+    COMPOSER_ALLOW_SUPERUSER=1 \
+    LOCAL_UID='' \
+    LOCAL_GID='' \
+    ENTRYPOINT_DEBUG=false
 
 RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     pecl install -f xdebug && \
