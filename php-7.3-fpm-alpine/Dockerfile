@@ -14,6 +14,7 @@ RUN apk --update --no-cache add autoconf g++ make libzip-dev && \
     docker-php-ext-enable xdebug && \
     docker-php-ext-install -j$(nproc) zip && \
     apk del --purge autoconf g++ make
+COPY common/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
