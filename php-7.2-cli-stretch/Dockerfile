@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y git sudo wget zip libzip-dev
 RUN pecl install -f xdebug && \
     docker-php-ext-enable xdebug && \
     docker-php-ext-install -j$(nproc) zip
+COPY common/xdebug.ini /etc/php/conf.d/xdebug.ini
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
