@@ -97,6 +97,14 @@ jobs:
       - build_image:
           image_tag: 7.3-cli-alpine-codeception
 
+  php-7-4-cli-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    steps:
+      - build_image:
+          image_tag: 7.4-cli-alpine
+
   builds_completed:
     docker:
       - image: docker:git
@@ -109,6 +117,7 @@ workflows:
   # Always build images
   build:
     jobs:
+      - php-7-4-cli-alpine
       - php-7-3-cli-alpine
       - php-7-3-cli-stretch
       - php-7-3-fpm-alpine
@@ -123,6 +132,7 @@ workflows:
             - php-7-3-cli-alpine
       - builds_completed:
           requires:
+            - php-7-4-cli-alpine
             - php-7-3-cli-alpine
             - php-7-3-cli-stretch
             - php-7-3-fpm-alpine
@@ -132,5 +142,3 @@ workflows:
             - php-7-1-cli-stretch
             - php-7-1-fpm-alpine
             - php-7-3-cli-alpine-codeception
-
-
