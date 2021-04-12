@@ -105,6 +105,14 @@ jobs:
       - build_image:
           image_tag: 7.4-cli-alpine
 
+  php-8-0-cli-alpine:
+    working_directory: /app
+    docker:
+      - image: docker:git
+    steps:
+      - build_image:
+          image_tag: 8.0-cli-alpine
+
   builds_completed:
     docker:
       - image: docker:git
@@ -117,6 +125,7 @@ workflows:
   # Always build images
   build:
     jobs:
+      - php-8-0-cli-alpine
       - php-7-4-cli-alpine
       - php-7-3-cli-alpine
       - php-7-3-cli-stretch
@@ -132,6 +141,7 @@ workflows:
             - php-7-3-cli-alpine
       - builds_completed:
           requires:
+            - php-8-0-cli-alpine
             - php-7-4-cli-alpine
             - php-7-3-cli-alpine
             - php-7-3-cli-stretch
